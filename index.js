@@ -23,7 +23,7 @@ async function run() {
     // Connect the client to the server	(optional starting in v4.7)
     await client.connect();
 
-    const productsCollection=client.db("usersDB").collection("addproducts");
+    const productsCollection=client.db("fashionDB").collection("addproducts");
 
     // add products
     app.post('/addproducts',async(req,res)=>{
@@ -32,6 +32,12 @@ async function run() {
       const result = await productsCollection.insertOne(product);
       res.send(result);
     })
+    // show products data
+    app.get('/addproducts',async(req,res)=>{
+      const cursor =productsCollection.find()
+      const result=await cursor.toArray();
+      res.send(result);
+  })
 
 
 
