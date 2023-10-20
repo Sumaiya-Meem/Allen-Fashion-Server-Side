@@ -24,6 +24,7 @@ async function run() {
     await client.connect();
 
     const productsCollection=client.db("fashionDB").collection("addproducts");
+    const usersCollection=client.db("fashionDB").collection("users");
 
     // add products
     app.post('/addproducts',async(req,res)=>{
@@ -38,6 +39,18 @@ async function run() {
       const result=await cursor.toArray();
       res.send(result);
   })
+
+  // update products
+  
+
+  // add user 
+  app.post('/user',async(req,res)=>{
+    const user=req.body;
+    console.log('new user',user);
+    const result = await usersCollection.insertOne(user);
+    res.send(result);
+  })
+
 
 
 
