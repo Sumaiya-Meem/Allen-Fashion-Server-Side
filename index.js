@@ -25,6 +25,7 @@ async function run() {
 
     const productsCollection = client.db("fashionDB").collection("addproducts");
     const usersCollection = client.db("fashionDB").collection("users");
+    const cartsCollection = client.db("fashionDB").collection("addCart");
 
     // add products
     app.post('/addproducts', async (req, res) => {
@@ -67,6 +68,14 @@ async function run() {
       const result = await productsCollection.updateOne(filter, product, options);
       res.send(result)
 
+    })
+
+    // add myCart product
+    app.post('/addCart', async (req, res) => {
+      const myCartProduct = req.body;
+      console.log('my cart product', myCartProduct );
+      // const result = await productsCollection.insertOne(product);
+      // res.send(result);
     })
 
     // add user 
