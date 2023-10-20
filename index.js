@@ -74,8 +74,8 @@ async function run() {
     app.post('/addCart', async (req, res) => {
       const myCartProduct = req.body;
       console.log('my cart product', myCartProduct );
-      // const result = await productsCollection.insertOne(product);
-      // res.send(result);
+      const result = await cartsCollection.insertOne(myCartProduct );
+      res.send(result);
     })
 
     // add user 
